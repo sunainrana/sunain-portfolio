@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-// Components
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import About from "./Components/About";
@@ -15,75 +9,40 @@ import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 
-// ================= HOME PAGE =================
-
-const Home = () => {
+const HomePage = () => {
   return (
     <>
-      {/* Hero Section */}
       <Hero />
-
-      {/* About Section */}
-      <section id="about" className="scroll-mt-24">
-        <About />
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="scroll-mt-24">
-        <Skills />
-      </section>
+      <About />
+      <Skills />
     </>
   );
 };
 
-// ================= APP =================
-
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-
-      {/* Navbar */}
+    <>
       <Navbar />
 
-      {/* Pages */}
       <Routes>
-
-        {/* Main Home */}
-        <Route
-          path="/"
-          element={<Home />}
-        />
+        {/* GitHub Pages root */}
+        <Route path="/" element={<Navigate to="/Home" replace />} />
 
         {/* Home */}
-        <Route
-          path="/Home"
-          element={<Home />}
-        />
+        <Route path="/Home" element={<HomePage />} />
 
         {/* Projects */}
-        <Route
-          path="/projects"
-          element={<Projects />}
-        />
+        <Route path="/projects" element={<Projects />} />
 
         {/* Contact */}
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
+        <Route path="/contact" element={<Contact />} />
 
-        {/* Unknown URL */}
-        <Route
-          path="*"
-          element={<Navigate to="/Home" replace />}
-        />
-
+        {/* Invalid URL */}
+        <Route path="*" element={<Navigate to="/Home" replace />} />
       </Routes>
 
-      {/* Footer */}
       <Footer />
-
-    </BrowserRouter>
+    </>
   );
 };
 
